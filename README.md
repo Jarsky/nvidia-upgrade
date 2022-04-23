@@ -21,7 +21,7 @@ Usage
 - Make the script executable i.e `chmod +x nvidia-upgrade.sh`
 - Run the script as root i.e `sudo ./nvidia-upgrade.sh`
 
-<h1>optional</h1>
+<h2>optional</h2>
 
 - You can set the script to fully auto by changing `interactive=true` to `interactive=false`
 - Create a CRON Job to run the script automatically
