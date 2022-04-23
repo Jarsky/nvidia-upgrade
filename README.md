@@ -26,10 +26,10 @@ Usage
 - You can set the script to fully auto by changing `interactive=true` to `interactive=false`
 - Create a CRON Job to run the script automatically
 
-Edit CRON as Root
+Edit CRON as Root<br>
 <code>sudo crontab -e</code>
 
-Example of the 1st Monday of the month
+Example of the 1st Monday of the month<br>
 <blockquote>
 #Run NVIDIA Drive Upgrade<br />
 0 2 1-7 * MON /path/to/scripts/nvidia-upgrade/nvidia-upgrade.sh
