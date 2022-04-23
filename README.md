@@ -21,7 +21,16 @@ Usage
 - Make the script executable i.e `chmod +x nvidia-upgrade.sh`
 - Run the script as root i.e `sudo ./nvidia-upgrade.sh`
 
-# optional
+## optional
 
 - You can set the script to fully auto by changing `interactive=true` to `interactive=false`
-- Create a CRON Job to run the script automatically e.g once a month
+- Create a CRON Job to run the script automatically
+
+Edit CRON as Root
+<code>sudo crontab -e</code>
+
+Example of the 1st Monday of the month
+<blockquote>
+#Run NVIDIA Drive Upgrade<br />
+0 2 1-7 * MON /path/to/scripts/nvidia-upgrade/nvidia-upgrade.sh
+</blockquote>
