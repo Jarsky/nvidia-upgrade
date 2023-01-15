@@ -12,10 +12,11 @@
 #########################################################
 
 # Config
+interactive=true
+
+
 OK='\e[0;92m\u2714\e[0m'
 ERR='\e[1;31m\u274c\e[0m'
-
-interactive=false
 
 # Check if script is being run as root
 if [[ $EUID -ne 0 ]]; then
