@@ -1,7 +1,7 @@
 
 | NVIDIA Version | Ubuntu Version | Release Status |
 |:--------------:|:-------------:|:--------------:|
-| `<!--NV_VERSION-->` | `<!--UBUNTU_VERSION-->` | `<!--RELEASE_STATUS-->` |
+| `<!--NV_VERSION-->` 595.58.03| `<!--UBUNTU_VERSION-->` 25.04| `<!--RELEASE_STATUS-->` passed|
 
 --- 
 
