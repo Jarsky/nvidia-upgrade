@@ -26,7 +26,7 @@ jobs:
         with:
           label: NVIDIA
           status: ${{ env.NV_VERSION }}
-          color: brightgreen
+          color: '#4c1'
           labelColor: 555
           path: badges/nvidia-version.svg
 
@@ -36,7 +36,7 @@ jobs:
         with:
           label: Ubuntu
           status: ${{ env.UBUNTU_VERSION }}
-          color: blue
+          color: '#007ec6'
           labelColor: blue
           path: badges/ubuntu-version.svg
 
@@ -46,7 +46,7 @@ jobs:
         with:
           label: Status
           status: ${{ env.RELEASE_STATUS }}
-          color: ${{ env.RELEASE_STATUS == 'passed' && 'brightgreen' || 'red' }}
+          color: ${{ env.RELEASE_STATUS == 'passed' && '#4c1' || '#e05d44' }}
           labelColor: 555
           path: badges/release-status.svg
 
