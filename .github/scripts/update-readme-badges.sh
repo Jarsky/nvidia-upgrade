@@ -11,4 +11,6 @@ UBUNTU_VERSION="${UBUNTU_VERSION:-25.04}"
 RELEASE_STATUS="${RELEASE_STATUS:-passed}"
 
 # Replace the tags in the README
-sed -i 's/`<!--NV_VERSION-->`[^|]*/`<!--NV_VERSION-->` '
+sed -i "s/\`<!--NV_VERSION-->\`[^|]*/\`<!--NV_VERSION-->\` $NV_VERSION/g" "$README"
+sed -i "s/\`<!--UBUNTU_VERSION-->\`[^|]*/\`<!--UBUNTU_VERSION-->\` $UBUNTU_VERSION/g" "$README"
+sed -i "s/\`<!--RELEASE_STATUS-->\`[^|]*/\`<!--RELEASE_STATUS-->\` $RELEASE_STATUS/g" "$README"
