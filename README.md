@@ -21,6 +21,11 @@ Usage
 - Make the script executable i.e `chmod +x nvidia-upgrade.sh`
 - Run the script as root i.e `sudo ./nvidia-upgrade.sh`
 
+Screenshots
+------------
+![NVIDIA Driver Install](screenshots/nvidia-driver-install.png)
+![NVIDIA Driver Patch](screenshots/nvidia-driver-patch.png)
+
 <h3>optional</h3>
 
 - You can set the script to fully auto by changing `interactive=true` to `interactive=false`
