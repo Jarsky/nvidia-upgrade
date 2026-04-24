@@ -20,13 +20,16 @@ jobs:
           echo "NV_VERSION=595.58.03" >> $GITHUB_ENV
           echo "UBUNTU_VERSION=25.04" >> $GITHUB_ENV
           echo "RELEASE_STATUS=passed" >> $GITHUB_ENV
+
       - name: Generate NVIDIA Version badge
         uses: emibcn/badge-action@v2
         with:
           label: NVIDIA
           status: ${{ env.NV_VERSION }}
           color: brightgreen
+          labelColor: 555
           path: badges/nvidia-version.svg
+
 
       - name: Generate Ubuntu Version badge
         uses: emibcn/badge-action@v2
@@ -34,7 +37,9 @@ jobs:
           label: Ubuntu
           status: ${{ env.UBUNTU_VERSION }}
           color: blue
+          labelColor: blue
           path: badges/ubuntu-version.svg
+
 
       - name: Generate Release Status badge
         uses: emibcn/badge-action@v2
@@ -42,6 +47,7 @@ jobs:
           label: Status
           status: ${{ env.RELEASE_STATUS }}
           color: ${{ env.RELEASE_STATUS == 'passed' && 'brightgreen' || 'red' }}
+          labelColor: 555
           path: badges/release-status.svg
 
       - name: Commit and push badges
