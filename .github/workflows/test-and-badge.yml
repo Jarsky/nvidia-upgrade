@@ -1,3 +1,5 @@
+      - name: Ensure badges directory exists
+        run: mkdir -p badges
 name: Test and Badge Update
 
 on:
