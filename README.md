@@ -1,6 +1,6 @@
 <p align="center">
-	<img src="badges/nvidia-version.svg" />  |  
-	<img src="badges/ubuntu-version.svg" />  |  
+	<img src="badges/nvidia-version.svg" />      
+	<img src="badges/ubuntu-version.svg" />      
 	<img src="badges/release-status.svg" />  
 </p>
 
