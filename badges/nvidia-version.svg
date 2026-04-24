@@ -1,0 +1,20 @@
+<svg width="117.9" height="20" viewBox="0 0 1179 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NVIDIA: 595.58.03">
+  <title>NVIDIA: 595.58.03</title>
+  <linearGradient id="a" x2="0" y2="100%">
+    <stop offset="0" stop-opacity=".1" stop-color="#EEE"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <mask id="m"><rect width="1179" height="200" rx="30" fill="#FFF"/></mask>
+  <g mask="url(#m)">
+    <rect width="509" height="200" fill="#555"/>
+    <rect width="670" height="200" fill="#brightgreen" x="509"/>
+    <rect width="1179" height="200" fill="url(#a)"/>
+  </g>
+  <g aria-hidden="true" fill="#fff" text-anchor="start" font-family="Verdana,DejaVu Sans,sans-serif" font-size="110">
+    <text x="60" y="148" textLength="409" fill="#000" opacity="0.25">NVIDIA</text>
+    <text x="50" y="138" textLength="409">NVIDIA</text>
+    <text x="564" y="148" textLength="570" fill="#000" opacity="0.25">595.58.03</text>
+    <text x="554" y="138" textLength="570">595.58.03</text>
+  </g>
+  
+</svg>
