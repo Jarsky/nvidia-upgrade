@@ -1,20 +1,17 @@
-      - name: Ensure badges directory exists
-        run: mkdir -p badges
-name: Test and Badge Update
 
+name: Test and Badge Update
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   simulate-nvidia-upgrade:
     runs-on: ubuntu-latest
     steps:
+      - name: Ensure badges directory exists
+        run: mkdir -p badges
       - name: Checkout repo
         uses: actions/checkout@v4
-
-
       - name: Simulate test (extract versions)
         id: extract
         run: |
@@ -22,8 +19,6 @@ jobs:
           echo "NV_VERSION=595.58.03" >> $GITHUB_ENV
           echo "UBUNTU_VERSION=25.04" >> $GITHUB_ENV
           echo "RELEASE_STATUS=passed" >> $GITHUB_ENV
-
-
       - name: Generate NVIDIA Version badge
         uses: emibcn/badge-action@v2
         with:
