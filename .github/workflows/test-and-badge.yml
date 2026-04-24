@@ -21,9 +21,38 @@ jobs:
           echo "UBUNTU_VERSION=25.04" >> $GITHUB_ENV
           echo "RELEASE_STATUS=passed" >> $GITHUB_ENV
 
-      - name: Update README badges
+
+      - name: Generate NVIDIA Version badge
+        uses: emibcn/badge-action@v2
+        with:
+          label: NVIDIA
+          status: ${{ env.NV_VERSION }}
+          color: brightgreen
+          path: badges/nvidia-version.svg
+
+      - name: Generate Ubuntu Version badge
+        uses: emibcn/badge-action@v2
+        with:
+          label: Ubuntu
+          status: ${{ env.UBUNTU_VERSION }}
+          color: blue
+          path: badges/ubuntu-version.svg
+
+      - name: Generate Release Status badge
+        uses: emibcn/badge-action@v2
+        with:
+          label: Status
+          status: ${{ env.RELEASE_STATUS }}
+          color: ${{ env.RELEASE_STATUS == 'passed' && 'brightgreen' || 'red' }}
+          path: badges/release-status.svg
+
+      - name: Commit and push badges
         run: |
-          bash .github/scripts/update-readme-badges.sh
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add badges/
+          git diff --cached --quiet || git commit -m "Update badges [skip ci]"
+          git push
 
       - name: Commit and push if changed
         run: |

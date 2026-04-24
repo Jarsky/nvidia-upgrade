@@ -1,9 +1,12 @@
 
-| NVIDIA Version | Ubuntu Version | Release Status |
-|:--------------:|:-------------:|:--------------:|
-| `<!--NV_VERSION-->` | `<!--UBUNTU_VERSION-->` | `<!--RELEASE_STATUS-->` |
 
---- 
+<p align="center">
+	<img src="badges/nvidia-version.svg" />
+	<img src="badges/ubuntu-version.svg" />
+	<img src="badges/release-status.svg" />
+</p>
+
+---
 
 # nvidia-upgrade
 
