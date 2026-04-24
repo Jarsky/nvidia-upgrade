@@ -1,0 +1,37 @@
+name: Test and Badge Update
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  simulate-nvidia-upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Simulate test (extract versions)
+        id: extract
+        run: |
+          # Simulate extracting latest NVIDIA and Ubuntu version
+          echo "NV_VERSION=580.89.05" >> $GITHUB_ENV
+          echo "UBUNTU_VERSION=25.04" >> $GITHUB_ENV
+          echo "RELEASE_STATUS=passed" >> $GITHUB_ENV
+
+      - name: Update README badges
+        uses: DamianReeves/write-file-action@v1.3
+        with:
+          path: README.md
+          write-mode: replace
+          contents: |
+            ${{ github.workspace }}/.github/scripts/update-readme-badges.sh
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add README.md
+          git diff --cached --quiet || git commit -m "Update badges [skip ci]"
+          git push
