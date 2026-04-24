@@ -8,10 +8,11 @@ jobs:
   simulate-nvidia-upgrade:
     runs-on: ubuntu-latest
     steps:
-      - name: Ensure badges directory exists
-        run: mkdir -p badges
       - name: Checkout repo
         uses: actions/checkout@v4
+      # Ensure badges directory exists for badge-action (see https://github.com/badges/shields/blob/master/README.md)
+      - name: Ensure badges directory exists
+        run: mkdir -p badges
       - name: Simulate test (extract versions)
         id: extract
         run: |
