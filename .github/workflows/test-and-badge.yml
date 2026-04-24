@@ -12,21 +12,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+
       - name: Simulate test (extract versions)
         id: extract
         run: |
           # Simulate extracting latest NVIDIA and Ubuntu version
-          echo "NV_VERSION=580.89.05" >> $GITHUB_ENV
+          echo "NV_VERSION=595.58.03" >> $GITHUB_ENV
           echo "UBUNTU_VERSION=25.04" >> $GITHUB_ENV
           echo "RELEASE_STATUS=passed" >> $GITHUB_ENV
 
       - name: Update README badges
-        uses: DamianReeves/write-file-action@v1.3
-        with:
-          path: README.md
-          write-mode: replace
-          contents: |
-            ${{ github.workspace }}/.github/scripts/update-readme-badges.sh
+        run: |
+          bash .github/scripts/update-readme-badges.sh
 
       - name: Commit and push if changed
         run: |

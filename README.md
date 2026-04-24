@@ -1,17 +1,13 @@
 
-# nvidia-upgrade
-
-Install & Upgrade the latest NVIDIA DKMS driver for Ubuntu (headless servers)
-
----
-
-## Badges & Status
-
 | NVIDIA Version | Ubuntu Version | Release Status |
 |:--------------:|:-------------:|:--------------:|
 | `<!--NV_VERSION-->` | `<!--UBUNTU_VERSION-->` | `<!--RELEASE_STATUS-->` |
 
-*These tags are updated by the GitHub workflow on each release/test run.*
+--- 
+
+# nvidia-upgrade
+
+Install & Upgrade the latest NVIDIA DKMS driver for Ubuntu (headless servers)
 
 ---
 
