@@ -44,6 +44,16 @@ This script installs or upgrades the latest NVIDIA Geforce drivers on Ubuntu hea
 	0 2 1-7 * MON /path/to/scripts/nvidia-upgrade/nvidia-upgrade.sh
 	```
 
+### Dynamic NVENC Patcher
+
+- To run it manually; here are the below options it supports.
+	 ```bash
+	chmod +x patch-dynamic.sh
+	sudo ./patch-dynamic.sh --check    # dry-run, see what would happen
+	sudo ./patch-dynamic.sh            # patch
+	sudo ./patch-dynamic.sh -r         # rollback
+	sudo ./patch-dynamic.sh -d 595.80  # force specific version
+	 ```
 ---
 
 ## Screenshots
