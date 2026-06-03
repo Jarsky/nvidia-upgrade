@@ -8,7 +8,8 @@
 
 # nvidia-upgrade
 
-Install & Upgrade the latest NVIDIA DKMS driver for Ubuntu (headless servers)
+Install & Upgrade the latest NVIDIA DKMS driver for Ubuntu (headless servers). 
+It will also dynamically patch NVENC to remove the session limit if possible; else fall back to the keylase nvidia patch.
 
 ---
 
