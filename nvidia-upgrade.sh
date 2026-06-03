@@ -202,36 +202,58 @@ echo -e "[$INFO] ─────────────────────
 echo -e "[$INFO]  nvidia-patch (keylase) — NVENC session unlimit"
 echo -e "[$INFO] ─────────────────────────────────────────────────"
 
-# Download patch scripts
-echo -e "[$INFO] Fetching patch.sh from GitHub ..."
-if ! curl -fsSL -o patch.sh "$PATCH_URL"; then
-    echo -e "[$ERR] Failed to download patch.sh — skipping patch step."
-else
-    chmod +x patch.sh
+# ── NVENC Patch ───────────────────────────────────────
+# Try patch-dynamic.sh first (no version list needed),
+# fall back to keylase patch.sh if it fails.
 
-    # Check if this driver version is supported by the patch
-    if bash ./patch.sh -c "$latestVersion" &>/dev/null; then
-        echo -e "[$OK] Driver $latestVersion is supported by nvidia-patch (NVENC)"
-        if [[ "$interactive" == "true" ]]; then
-            read -rp "$(echo -e "[$INFO] Apply NVENC patch (removes simultaneous session limit)? [Y/n] ")" apply_patch
+PATCH_DYNAMIC="$(dirname "$0")/patch-dynamic.sh"
+nvenc_patched=false
+
+if [[ "$interactive" == "true" ]]; then
+    read -rp "$(echo -e "[$INFO] Apply NVENC patch (removes simultaneous session limit)? [Y/n] ")" apply_patch
+else
+    apply_patch="y"
+fi
+
+case "$apply_patch" in
+    [nN][oO]|[nN]) echo -e "[$INFO] NVENC patch skipped." ;;
+    *)
+        # Try dynamic patcher first
+        if [[ -x "$PATCH_DYNAMIC" ]]; then
+            echo -e "[$INFO] Attempting dynamic NVENC patch ..."
+            if bash "$PATCH_DYNAMIC" -d "$latestVersion"; then
+                echo -e "[$OK] NVENC patch applied successfully (dynamic)."
+                nvenc_patched=true
+            else
+                echo -e "[$ERR] Dynamic patch failed — falling back to keylase patch.sh"
+            fi
         else
-            apply_patch="y"
+            echo -e "[$INFO] patch-dynamic.sh not found at $PATCH_DYNAMIC — using keylase fallback."
         fi
-        case "$apply_patch" in
-            [nN][oO]|[nN]) echo -e "[$INFO] NVENC patch skipped." ;;
-            *)
-                echo -e "[$INFO] Applying NVENC patch ..."
-                if bash ./patch.sh; then
-                    echo -e "[$OK] NVENC patch applied successfully."
+
+        # Fall back to keylase if dynamic failed or wasn't found
+        if [[ "$nvenc_patched" == "false" ]]; then
+            echo -e "[$INFO] Fetching patch.sh from GitHub ..."
+            if ! curl -fsSL -o patch.sh "$PATCH_URL"; then
+                echo -e "[$ERR] Failed to download patch.sh — skipping NVENC patch."
+            else
+                chmod +x patch.sh
+                if bash ./patch.sh -c "$latestVersion" &>/dev/null; then
+                    echo -e "[$OK] Driver $latestVersion supported by keylase patch (NVENC)"
+                    if bash ./patch.sh; then
+                        echo -e "[$OK] NVENC patch applied successfully (keylase fallback)."
+                        nvenc_patched=true
+                    else
+                        echo -e "[$ERR] keylase patch.sh also failed. Retry manually: bash patch.sh"
+                    fi
                 else
-                    echo -e "[$ERR] NVENC patch failed. You can retry manually: bash patch.sh"
+                    echo -e "[$ERR] Driver $latestVersion not supported by keylase patch either."
+                    echo -e "[$INFO] Check https://github.com/keylase/nvidia-patch for updates."
                 fi
-                ;;
-        esac
-    else
-        echo -e "[$ERR] Driver $latestVersion is NOT yet supported by nvidia-patch (NVENC)."
-        echo -e "[$INFO] Check https://github.com/keylase/nvidia-patch for updates."
-    fi
+            fi
+        fi
+        ;;
+esac
 
     # NvFBC patch (optional, for screen capture on consumer GPUs)
     echo ""
